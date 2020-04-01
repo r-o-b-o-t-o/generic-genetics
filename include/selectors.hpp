@@ -11,6 +11,9 @@ template <typename T> class Elitism {
 public:
     Elitism(int n) : n(n) {}
 
+    int getN() { return this->n; }
+    void setN(int n) { this->n = n; }
+
     std::vector<T> operator()(const std::vector<T>& pop,
                               const std::vector<float>& ratings) const {
         size_t size = pop.size();

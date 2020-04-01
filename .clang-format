@@ -3,7 +3,6 @@ UseTab: Never
 ---
 Language: Cpp
 AlignAfterOpenBracket: Align
-AlignConsecutiveAssignments: true
 AlignConsecutiveMacros: true
 AlignEscapedNewlines: true
 AlignOperands: true

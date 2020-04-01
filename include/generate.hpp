@@ -4,6 +4,10 @@
 #include <iostream>
 #include <vector>
 
+#include "random.hpp"
+
+namespace GenericGenetics {
+
 template <typename T, typename G, typename E, typename S, typename C,
           typename M, typename F>
 T generate(const G& generator, const E& evaluator, const S& selector,
@@ -23,11 +27,11 @@ T generate(const G& generator, const E& evaluator, const S& selector,
     while (!stopCrit(notes)) {
         pop = selector(pop, notes);
         while (pop.size() < NB) {
-            int id1 = rand() % pop.size();
-            int id2 = rand() % pop.size();
-            if (id1 == id2)
-            {
-                id2 = (id2 + 1) % pop.size();
+            size_t popSize = pop.size();
+            int id1 = Random::getInt(0, popSize - 1);
+            int id2 = Random::getInt(0, popSize - 1);
+            if (id1 == id2) {
+                id2 = (id2 + 1) % popSize;
             }
             pop.push_back(crossover(pop[id1], pop[id2]));
         }
@@ -48,7 +52,9 @@ T generate(const G& generator, const E& evaluator, const S& selector,
 
     auto it = max_element(std::begin(notes), std::end(notes));
 
-    std::cout << "Finished in " << i << " iterations"<<std::endl;
+    std::cout << "Finished in " << i << " iterations" << std::endl;
 
     return pop[std::distance(notes.begin(), it)];
 }
+
+} // namespace GenericGenetics
