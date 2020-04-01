@@ -9,7 +9,16 @@
 class MySelector {};
 class MyCrossover {};
 class MyMutation {};
-class MyStopCriterion {};
+class MyStopCriterion {
+  public:
+    bool operator()(std::vector<float>& notes) const {
+      for (auto &note : notes) {
+        if (note >= 5.0)
+          return true;
+      }
+      return false;
+    }
+};
 
 
 int main() {
