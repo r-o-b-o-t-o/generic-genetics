@@ -12,8 +12,8 @@ public:
         std::string s = solution;
         static const char alphanum[] = "abcdefghijklmnopqrstuvwxyz";
         for (int i = 0; i < solution.length(); ++i) {
-            if (rand() % 100 < 10) {
-                s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
+            if (GenericGenetics::Random::getInt(0, 100) < 10) {
+                s[i] = alphanum[GenericGenetics::Random::getInt(0, sizeof(alphanum) - 1)];
             }
         }
 

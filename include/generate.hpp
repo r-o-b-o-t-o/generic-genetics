@@ -36,7 +36,7 @@ T generate(const G& generator, const E& evaluator, const S& selector,
             pop.push_back(crossover(pop[id1], pop[id2]));
         }
         for (int i = 0; i < pop.size(); ++i) {
-            if (rand() % 100 < 30) {
+            if (Random::getInt(0, 100) < 30) {
                 pop[i] = mutation(pop[i]);
             }
         }
