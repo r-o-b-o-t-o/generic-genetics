@@ -4,7 +4,7 @@
 
 class MyGenerator {
   public:
-    void operator()() { std::cout << "test!\n"; }
+    void operator()() const { std::cout << "test!\n"; }
 };
 class MyEvaluator {};
 class MySelector {};
