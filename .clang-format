@@ -26,4 +26,5 @@ SpacesInAngles: false
 SpacesInContainerLiterals: true
 SpacesInSquareBrackets: false
 SpacesInParentheses: false
+AccessModifierOffset: -4
 ---
