@@ -1,0 +1,29 @@
+IndentWidth: 4
+UseTab: Never
+---
+Language: Cpp
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: true
+AlignConsecutiveMacros: true
+AlignEscapedNewlines: true
+AlignOperands: true
+AlignTrailingComments: true
+AlwaysBreakTemplateDeclarations: MultiLine
+BreakBeforeBraces: Attach
+BreakConstructorInitializers: BeforeColon
+ConstructorInitializerIndentWidth: 1
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+PointerAlignment: Left
+SortIncludes: true
+SortUsingDeclarations: true
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCpp11BracedList: true
+SpaceBeforeCtorInitializerColon: true
+SpaceBeforeInheritanceColon: true
+SpaceBeforeRangeBasedForLoopColon: true
+SpaceInEmptyParentheses: false
+SpacesInAngles: false
+SpacesInContainerLiterals: true
+SpacesInSquareBrackets: false
+SpacesInParentheses: false
+---
