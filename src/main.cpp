@@ -1,10 +1,10 @@
-#include <iostream>
 #include <ctime>
+#include <iostream>
 
-#include "MyGenerator.hpp"
 #include "MyEvaluator.hpp"
+#include "MyGenerator.hpp"
 #include "generate.hpp"
-
+#include "selectors.hpp"
 
 class MySelector {};
 class MyCrossover {};
@@ -20,11 +20,10 @@ class MyStopCriterion {
     }
 };
 
-
 int main() {
     MyGenerator g;
     MyEvaluator e;
-    MySelector s;
+    GenericGenetics::Selector::Elitism<int> s(1);
     MyCrossover c;
     MyMutation m;
     MyStopCriterion f;
