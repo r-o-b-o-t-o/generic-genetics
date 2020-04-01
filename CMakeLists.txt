@@ -11,4 +11,5 @@ ADD_EXECUTABLE(
     ${PROJECT_SOURCE_DIR}/src/main.cpp
     ${PROJECT_SOURCE_DIR}/src/MyGenerator.cpp
     ${PROJECT_SOURCE_DIR}/src/MyEvaluator.cpp
+    ${PROJECT_SOURCE_DIR}/src/MyCrossover.cpp
 )
