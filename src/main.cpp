@@ -1,18 +1,16 @@
 #include <iostream>
+#include <ctime>
 
+#include "MyGenerator.hpp"
+#include "MyEvaluator.hpp"
 #include "generate.hpp"
 
-class MyGenerator {
-  public:
-    void operator()() const { std::cout << "test!\n"; }
-};
-class MyEvaluator {};
+
 class MySelector {};
 class MyCrossover {};
 class MyMutation {};
 class MyStopCriterion {};
 
-struct Result {};
 
 int main() {
     MyGenerator g;
@@ -21,7 +19,10 @@ int main() {
     MyCrossover c;
     MyMutation m;
     MyStopCriterion f;
-    Result r = generate<Result>(g, e, s, c, m, f);
 
+    std::srand(std::time(nullptr));
+    std::string r = generate<std::string>(g, e, s, c, m, f);
+
+    std::cout << r << std::endl;
     return 0;
 }
