@@ -12,7 +12,11 @@ public:
     static double getDouble(double min, double max);
     static bool getBool();
 
-    static int getWeightedRandomItem(const std::vector<float>& weights);
+    template <typename T>
+    static int getWeightedRandomItem(const std::vector<T>& weights) {
+        std::discrete_distribution<int> distribution(weights.begin(), weights.end());
+        return distribution(Random::rng);
+    }
 
 private:
     static std::mt19937 rng;

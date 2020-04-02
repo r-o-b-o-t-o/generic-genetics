@@ -21,9 +21,4 @@ double Random::getDouble(double min, double max) {
 
 bool Random::getBool() { return getInt(0, 1) == 1; }
 
-int Random::getWeightedRandomItem(const std::vector<float>& weights) {
-    std::discrete_distribution<int> distribution(weights.begin(), weights.end());
-    return distribution(Random::rng);
-}
-
 } // namespace GenericGenetics

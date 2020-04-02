@@ -27,12 +27,8 @@ public:
             } while (std::find(selectedIndices.begin(), selectedIndices.end(),
                                idx) != selectedIndices.end());
             selectedIndices.push_back(idx);
-            selected.push_back(pop[idx]);
+            selected.push_back(std::move(pop[idx]));
         }
-        /*for (int i = 0; i < selectedIndices.size(); ++i) {
-            std::cout << selectedIndices[i] << " ";
-        }
-        std::cout << "\n";*/
         return selected;
     }
 

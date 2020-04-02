@@ -25,7 +25,7 @@ int main() {
     std::string solution = "bjr les amis";
     MyEvaluator e(solution);
     MyGenerator g(solution.length());
-    GenericGenetics::Selector::Tournament<std::string> s(200, 100);
+    GenericGenetics::Selector::Rank<std::string> s(100);
     MyCrossover c;
     MyMutation m;
     GenericGenetics::Criterion::Mark f(static_cast<float>(solution.length()));
