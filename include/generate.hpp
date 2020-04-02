@@ -11,7 +11,7 @@ namespace GenericGenetics {
 template <typename T, typename G, typename E, typename S, typename C,
           typename M, typename F>
 T generate(const G& generator, const E& evaluator, const S& selector,
-           const C& crossover, const M& mutation, const F& stopCrit) {
+           const C& crossover, const M& mutation, F& stopCrit) {
     std::vector<T> pop;
     std::vector<float> notes;
 
@@ -19,7 +19,7 @@ T generate(const G& generator, const E& evaluator, const S& selector,
         pop.push_back(generator());
     }
 
-    for (auto& p : pop) {
+    for (T& p : pop) {
         notes.push_back(evaluator(p));
     }
 
@@ -41,7 +41,7 @@ T generate(const G& generator, const E& evaluator, const S& selector,
             }
         }
         notes.clear();
-        for (auto& p : pop) {
+        for (T& p : pop) {
             notes.push_back(evaluator(p));
         }
 

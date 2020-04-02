@@ -8,7 +8,7 @@
 
 class MyMutation {
 public:
-    std::string operator()(std::string& solution) const {
+    std::string operator()(const std::string& solution) const {
         std::string s = solution;
         static const char alphanum[] = "abcdefghijklmnopqrstuvwxyz ";
         for (int i = 0; i < solution.length(); ++i) {

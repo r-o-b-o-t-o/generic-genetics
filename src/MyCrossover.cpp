@@ -2,7 +2,7 @@
 #include "MyGenerator.hpp"
 #include "random.hpp"
 
-std::string MyCrossover::operator()(std::string& solution1, std::string& solution2) const {
+std::string MyCrossover::operator()(const std::string& solution1, const std::string& solution2) const {
     int middle = GenericGenetics::Random::getInt(0, SIZE - 3) + 1;
     std::string str = solution1;
 

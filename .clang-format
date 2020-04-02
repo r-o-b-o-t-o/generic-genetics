@@ -7,10 +7,9 @@ AlignConsecutiveMacros: true
 AlignEscapedNewlines: true
 AlignOperands: true
 AlignTrailingComments: true
-AlwaysBreakTemplateDeclarations: MultiLine
+AlwaysBreakTemplateDeclarations: Yes
 BreakBeforeBraces: Attach
 BreakConstructorInitializers: BeforeColon
-ConstructorInitializerIndentWidth: 1
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
 PointerAlignment: Left
 SortIncludes: true
