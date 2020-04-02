@@ -4,8 +4,8 @@
 #include <string>
 
 class MyEvaluator {
-  public:
-    float operator()(std::string&) const;
+public:
+    float operator()(const std::string&) const;
 };
 
 #endif

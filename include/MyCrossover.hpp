@@ -6,7 +6,7 @@
 
 class MyCrossover {
   public:
-    std::string operator()(std::string&, std::string&) const;
+    std::string operator()(const std::string&, const std::string&) const;
 };
 
 #endif

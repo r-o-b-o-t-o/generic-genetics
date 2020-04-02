@@ -19,7 +19,7 @@ T generate(const G& generator, const E& evaluator, const S& selector,
         pop.push_back(generator());
     }
 
-    for (auto& p : pop) {
+    for (T& p : pop) {
         notes.push_back(evaluator(p));
     }
 
@@ -41,7 +41,7 @@ T generate(const G& generator, const E& evaluator, const S& selector,
             }
         }
         notes.clear();
-        for (auto& p : pop) {
+        for (T& p : pop) {
             notes.push_back(evaluator(p));
         }
 

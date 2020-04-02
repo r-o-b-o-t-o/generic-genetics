@@ -1,13 +1,15 @@
-#include <assert.h>
+#pragma once
 
 #include <algorithm>
+#include <assert.h>
 #include <tuple>
 #include <vector>
 
 namespace GenericGenetics {
 namespace Selector {
 
-template <typename T> class Elitism {
+template <typename T>
+class Elitism {
 public:
     Elitism(int n) : n(n) {}
 
@@ -42,10 +44,6 @@ public:
 private:
     int n;
 };
-
-class RandomByScore {};
-class RandomByRank {};
-class Tournament {};
 
 } // namespace Selector
 } // namespace GenericGenetics
