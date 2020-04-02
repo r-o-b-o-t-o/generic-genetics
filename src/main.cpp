@@ -11,10 +11,10 @@ class MyMutation {
 public:
     std::string operator()(const std::string& solution) const {
         std::string s = solution;
-        static const char alphanum[] = "abcdefghijklmnopqrstuvwxyz ";
+
         for (int i = 0; i < solution.length(); ++i) {
             if (GenericGenetics::Random::getInt(0, 100) < 10) {
-                s[i] = alphanum[GenericGenetics::Random::getInt(0, sizeof(alphanum) - 2)];
+                s[i] = alphanum[GenericGenetics::Random::getInt(0, alphanum.length() - 1)];
             }
         }
 
@@ -22,13 +22,16 @@ public:
     }
 };
 
+int MyGenerator::SIZE = 0;
+
 int main() {
-    MyGenerator g;
-    MyEvaluator e;
+    std::string solution = "Thibaut est un sacrer fdp, j'ai jurer wola.";
+    MyEvaluator e(solution);
+    MyGenerator g(solution.length());
     GenericGenetics::Selector::Elitism<std::string> s(100);
     MyCrossover c;
     MyMutation m;
-    GenericGenetics::Criterion::Plateau f(5);
+    GenericGenetics::Criterion::Mark f(43.0);
 
     std::string r = GenericGenetics::generate<std::string>(g, e, s, c, m, f);
 

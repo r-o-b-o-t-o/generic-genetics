@@ -4,11 +4,13 @@
 #include <string>
 
 static const int NB = 1000;
-static const int SIZE = 25;
+static const std::string alphanum = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .,'";
 
 class MyGenerator {
   public:
+    MyGenerator(int);
     std::string operator()() const;
+    static int SIZE;
 };
 
 #endif
