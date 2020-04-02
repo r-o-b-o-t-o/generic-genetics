@@ -40,7 +40,7 @@ T generate(const G& generator, const E& evaluator, const S& selector,
             }
             T child = crossover(parents[id1], parents[id2]);
             if (Random::getInt(0, 100) < 30) {
-                child = mutation(child);
+                mutation(child);
             }
             pop.push_back(child);
         }

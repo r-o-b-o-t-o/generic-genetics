@@ -9,16 +9,13 @@
 
 class MyMutation {
 public:
-    std::string operator()(const std::string& solution) const {
-        std::string s = solution;
+    void operator()(std::string& solution) const {
 
         for (int i = 0; i < solution.length(); ++i) {
-            if (GenericGenetics::Random::getInt(0, 100) < 10) {
-                s[i] = alphanum[GenericGenetics::Random::getInt(0, alphanum.length() - 1)];
+            if (GenericGenetics::Random::getInt(0, 99) < 10) {
+                solution[i] = alphanum[GenericGenetics::Random::getInt(0, alphanum.length() - 1)];
             }
         }
-
-        return s;
     }
 };
 
