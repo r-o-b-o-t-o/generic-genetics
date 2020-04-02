@@ -5,6 +5,7 @@
 #include "MyGenerator.hpp"
 #include "generate.hpp"
 #include "selectors.hpp"
+#include "criterion.hpp"
 
 class MyMutation {
 public:
@@ -20,16 +21,6 @@ public:
         return s;
     }
 };
-class MyStopCriterion {
-public:
-    bool operator()(std::vector<float>& notes) const {
-        for (auto& note : notes) {
-            if (note >= 25.0)
-                return true;
-        }
-        return false;
-    }
-};
 
 int main() {
     MyGenerator g;
@@ -37,7 +28,7 @@ int main() {
     GenericGenetics::Selector::Elitism<std::string> s(100);
     MyCrossover c;
     MyMutation m;
-    MyStopCriterion f;
+    GenericGenetics::Criterion::Plateau f(5);
 
     std::string r = GenericGenetics::generate<std::string>(g, e, s, c, m, f);
 
