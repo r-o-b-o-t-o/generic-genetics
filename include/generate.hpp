@@ -51,8 +51,6 @@ T generate(const G& generator, const E& evaluator, const S& selector,
             ratings.push_back(evaluator(p));
         }
 
-        auto it = max_element(std::begin(ratings), std::end(ratings));
-        std::cout << "best individual: " << pop[std::distance(ratings.begin(), it)] << " (with a rating of " << *it << ")" << std::endl;
         i++;
     }
 
