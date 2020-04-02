@@ -13,6 +13,7 @@ ADD_EXECUTABLE(
     ${PROJECT_SOURCE_DIR}/src/criterion/iterations.cpp
     ${PROJECT_SOURCE_DIR}/src/criterion/plateau.cpp
     ${PROJECT_SOURCE_DIR}/src/criterion/mark.cpp
+    ${PROJECT_SOURCE_DIR}/src/criterion/combined.cpp
     ${PROJECT_SOURCE_DIR}/src/MyGenerator.cpp
     ${PROJECT_SOURCE_DIR}/src/MyEvaluator.cpp
     ${PROJECT_SOURCE_DIR}/src/MyCrossover.cpp

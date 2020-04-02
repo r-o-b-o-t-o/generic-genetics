@@ -3,13 +3,13 @@
 namespace GenericGenetics {
 namespace Criterion {
 
-Mark::Mark(float maxNote)
-    : maxNote(maxNote) {}
+Mark::Mark(float maxNote) : maxNote(maxNote) {}
 
 bool Mark::operator()(std::vector<float>& notes) {
-    for (auto& note : notes) {
-        if (note >= this->maxNote)
+    for (float& note : notes) {
+        if (note >= this->maxNote) {
             return true;
+        }
     }
     return false;
 }

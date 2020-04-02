@@ -9,8 +9,9 @@ Plateau::Plateau(int maxIterations)
 bool Plateau::operator()(std::vector<float>& notes) {
     float max = 0.0;
     for (float& n : notes) {
-        if (n > max)
+        if (n > max) {
             max = n;
+        }
     }
 
     if (max == this->prevNote) {
