@@ -1,5 +1,4 @@
-#ifndef MYEVALUATOR_HPP
-#define MYEVALUATOR_HPP
+#pragma once
 
 #include <string>
 
@@ -10,5 +9,3 @@ public:
 private:
     std::string solution;
 };
-
-#endif

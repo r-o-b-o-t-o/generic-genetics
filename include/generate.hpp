@@ -14,19 +14,19 @@ T generate(const G& generator, const E& evaluator, const S& selector,
            const C& crossover, const M& mutation, F& stopCrit) {
     std::vector<T> pop;
     std::vector<T> parents;
-    std::vector<float> notes;
+    std::vector<float> ratings;
 
     for (int i = 0; i < NB; ++i) {
         pop.push_back(generator());
     }
 
     for (T& p : pop) {
-        notes.push_back(evaluator(p));
+        ratings.push_back(evaluator(p));
     }
 
     int i = 0;
-    while (!stopCrit(notes)) {
-        parents = selector(pop, notes);
+    while (!stopCrit(ratings)) {
+        parents = selector(pop, ratings);
         size_t parentsSize = parents.size();
 
         // New generation from the fittest individuals of the previous population
@@ -46,21 +46,21 @@ T generate(const G& generator, const E& evaluator, const S& selector,
         }
 
         // Calculate fitness of new generation
-        notes.clear();
+        ratings.clear();
         for (T& p : pop) {
-            notes.push_back(evaluator(p));
+            ratings.push_back(evaluator(p));
         }
 
-        auto it = max_element(std::begin(notes), std::end(notes));
-        std::cout << "best individual: " << pop[std::distance(notes.begin(), it)] << " (with a rating of " << *it << ")" << std::endl;
+        auto it = max_element(std::begin(ratings), std::end(ratings));
+        std::cout << "best individual: " << pop[std::distance(ratings.begin(), it)] << " (with a rating of " << *it << ")" << std::endl;
         i++;
     }
 
-    auto it = max_element(std::begin(notes), std::end(notes));
+    auto it = max_element(std::begin(ratings), std::end(ratings));
 
     std::cout << "Finished in " << i << " iterations" << std::endl;
 
-    return pop[std::distance(notes.begin(), it)];
+    return pop[std::distance(ratings.begin(), it)];
 }
 
 } // namespace GenericGenetics

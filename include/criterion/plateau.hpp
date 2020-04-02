@@ -9,11 +9,11 @@ class Plateau {
 public:
     Plateau(int maxIterations);
 
-    bool operator()(std::vector<float>& notes);
+    bool operator()(std::vector<float>& ratings);
 
 private:
     int count;
-    float prevNote;
+    float prevRating;
     int maxIterations;
 };
 

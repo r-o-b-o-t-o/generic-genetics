@@ -1,6 +1,5 @@
 #include "MyEvaluator.hpp"
 #include "MyGenerator.hpp"
-#include <cmath>
 
 MyEvaluator::MyEvaluator(const std::string& s) : solution(s) {}
 
@@ -13,7 +12,7 @@ float MyEvaluator::operator()(const std::string& s) const {
             int id = alphanum.find(s[i]);
             int id2 = alphanum.find(this->solution[i]);
             int v = alphanum.substr(id, id2 - id).length() + 1;
-            val += 0.99f - (static_cast<float>(v) / static_cast<float>(alphanum.length() - 1));
+            val += 0.5f - (static_cast<float>(v) / static_cast<float>(alphanum.length() - 1));
         }
     }
 

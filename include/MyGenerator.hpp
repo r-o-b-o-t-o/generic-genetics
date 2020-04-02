@@ -1,9 +1,8 @@
-#ifndef MYGENERATOR_HPP
-#define MYGENERATOR_HPP
+#pragma once
 
 #include <string>
 
-static const int NB = 100;
+static const int NB = 1000;
 static const std::string alphanum = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .,'";
 
 class MyGenerator {
@@ -12,5 +11,3 @@ class MyGenerator {
     std::string operator()() const;
     static int SIZE;
 };
-
-#endif

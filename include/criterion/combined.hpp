@@ -13,7 +13,7 @@ class Combined {
 public:
     Combined(int maxIterations, float maxRating, int plateauMaxIterations);
 
-    bool operator()(std::vector<float>& notes);
+    bool operator()(std::vector<float>& ratings);
 
 private:
     Iterations iterations;

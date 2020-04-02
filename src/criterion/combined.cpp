@@ -8,8 +8,8 @@ Combined::Combined(int maxIterations, float maxRating, int plateauMaxIterations)
       mark(maxRating),
       plateau(plateauMaxIterations) {}
 
-bool Combined::operator()(std::vector<float>& notes) {
-    return this->iterations(notes) || this->mark(notes) || this->plateau(notes);
+bool Combined::operator()(std::vector<float>& ratings) {
+    return this->iterations(ratings) || this->mark(ratings) || this->plateau(ratings);
 }
 
 } // namespace Criterion

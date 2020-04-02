@@ -9,7 +9,7 @@ class Iterations {
 public:
     Iterations(int maxIterations);
 
-    bool operator()(std::vector<float>& notes);
+    bool operator()(std::vector<float>& ratings);
 
 private:
     int count;

@@ -7,12 +7,12 @@ namespace Criterion {
 
 class Mark {
 public:
-    Mark(float maxNote);
+    Mark(float maxRating);
 
-    bool operator()(std::vector<float>& notes);
+    bool operator()(std::vector<float>& ratings);
 
 private:
-    float maxNote;
+    float maxRating;
 };
 
 } // namespace Criterion

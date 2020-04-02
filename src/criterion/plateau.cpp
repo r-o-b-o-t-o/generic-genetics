@@ -4,20 +4,20 @@ namespace GenericGenetics {
 namespace Criterion {
 
 Plateau::Plateau(int maxIterations)
-    : maxIterations(maxIterations), count(0), prevNote(0.0) {}
+    : maxIterations(maxIterations), count(0), prevRating(0.0) {}
 
-bool Plateau::operator()(std::vector<float>& notes) {
+bool Plateau::operator()(std::vector<float>& ratings) {
     float max = 0.0;
-    for (float& n : notes) {
-        if (n > max) {
-            max = n;
+    for (float& r : ratings) {
+        if (r > max) {
+            max = r;
         }
     }
 
-    if (max == this->prevNote) {
+    if (max == this->prevRating) {
         this->count++;
     } else {
-        this->prevNote = max;
+        this->prevRating = max;
         this->count = 0;
     }
     return this->count > this->maxIterations;
