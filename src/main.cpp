@@ -10,10 +10,10 @@ class MyMutation {
 public:
     std::string operator()(std::string& solution) const {
         std::string s = solution;
-        static const char alphanum[] = "abcdefghijklmnopqrstuvwxyz";
+        static const char alphanum[] = "abcdefghijklmnopqrstuvwxyz ";
         for (int i = 0; i < solution.length(); ++i) {
             if (GenericGenetics::Random::getInt(0, 100) < 10) {
-                s[i] = alphanum[GenericGenetics::Random::getInt(0, sizeof(alphanum) - 1)];
+                s[i] = alphanum[GenericGenetics::Random::getInt(0, sizeof(alphanum) - 2)];
             }
         }
 
@@ -24,7 +24,7 @@ class MyStopCriterion {
 public:
     bool operator()(std::vector<float>& notes) const {
         for (auto& note : notes) {
-            if (note >= 21.0)
+            if (note >= 25.0)
                 return true;
         }
         return false;
@@ -34,7 +34,7 @@ public:
 int main() {
     MyGenerator g;
     MyEvaluator e;
-    GenericGenetics::Selector::Elitism<std::string> s(5);
+    GenericGenetics::Selector::Elitism<std::string> s(100);
     MyCrossover c;
     MyMutation m;
     MyStopCriterion f;

@@ -3,8 +3,8 @@
 
 #include <string>
 
-static const int NB = 10;
-static const int SIZE = 21;
+static const int NB = 1000;
+static const int SIZE = 25;
 
 class MyGenerator {
   public:

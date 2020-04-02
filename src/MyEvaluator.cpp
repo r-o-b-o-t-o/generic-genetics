@@ -3,23 +3,20 @@
 
 float MyEvaluator::operator()(std::string& s) const {
     float val = 0.0;
-    std::string solution = "thibautestunsacrerfdp";
+    std::string solution = "thibaut est un sacrer fdp";
 
 
-    static const std::string alphanum = "abcdefghijklmnopqrstuvwxyz";
+    static const std::string alphanum = "abcdefghijklmnopqrstuvwxyz ";
 
     for (int i = 0; i < s.length(); ++i)
     {
         if (s[i] == solution[i])
             val += 1.0;
         else {
-            int t = abs(s[i] - solution[i]);
-            if (t < 2)
-                val += 0.5;
-            else if (t < 4) 
-                val += 0.30;
-            else if (t < 6) 
-                val += 0.1;
+            int id = alphanum.find(s[i]);
+            int id2 = alphanum.find(solution[i]);
+            int v = alphanum.substr(id, id2 - id).length()+1;
+            val += 0.9 - (v / (alphanum.length() - 1));
         }
         
     }
