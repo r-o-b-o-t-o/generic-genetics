@@ -3,12 +3,11 @@
 #include "random.hpp"
 
 std::string MyCrossover::operator()(const std::string& solution1, const std::string& solution2) const {
-    int middle = GenericGenetics::Random::getInt(0, MyGenerator::SIZE - 3) + 1;
-    std::string str = solution1;
+    std::string result = solution1;
+    size_t len = result.length();
+    size_t pos = GenericGenetics::Random::getInt(0, len - 1);
+    size_t replaceLength = GenericGenetics::Random::getInt(1, len - pos);
+    result.replace(pos, replaceLength, solution2, pos, replaceLength);
 
-    for (int i = middle; i < str.length(); ++i) {
-        str[i] = solution2[i];
-    }
-
-    return str;
+    return result;
 }

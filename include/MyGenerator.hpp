@@ -3,7 +3,7 @@
 
 #include <string>
 
-static const int NB = 1000;
+static const int NB = 100;
 static const std::string alphanum = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .,'";
 
 class MyGenerator {

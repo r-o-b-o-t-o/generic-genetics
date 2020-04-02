@@ -1,6 +1,7 @@
 #pragma once
 
 #include <random>
+#include <vector>
 
 namespace GenericGenetics {
 
@@ -10,6 +11,8 @@ public:
     static float getFloat(float min, float max);
     static double getDouble(double min, double max);
     static bool getBool();
+
+    static int getWeightedRandomItem(const std::vector<float>& weights);
 
 private:
     static std::mt19937 rng;

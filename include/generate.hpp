@@ -13,6 +13,7 @@ template <typename T, typename G, typename E, typename S, typename C,
 T generate(const G& generator, const E& evaluator, const S& selector,
            const C& crossover, const M& mutation, F& stopCrit) {
     std::vector<T> pop;
+    std::vector<T> parents;
     std::vector<float> notes;
 
     for (int i = 0; i < NB; ++i) {
@@ -25,28 +26,33 @@ T generate(const G& generator, const E& evaluator, const S& selector,
 
     int i = 0;
     while (!stopCrit(notes)) {
-        pop = selector(pop, notes);
-        while (pop.size() < NB) {
-            size_t popSize = pop.size();
-            int id1 = Random::getInt(0, popSize - 1);
-            int id2 = Random::getInt(0, popSize - 1);
+        parents = selector(pop, notes);
+        size_t parentsSize = parents.size();
+
+        // New generation from the fittest individuals of the previous population
+        pop.clear();
+        for (int j = 0; j < NB; ++j) {
+            int id1 = Random::getInt(0, parentsSize - 1);
+            int id2 = Random::getInt(0, parentsSize - 1);
             if (id1 == id2) {
-                id2 = (id2 + 1) % popSize;
+                id2++;
+                id2 %= parentsSize;
             }
-            pop.push_back(crossover(pop[id1], pop[id2]));
-        }
-        for (int i = 0; i < pop.size(); ++i) {
+            T child = crossover(parents[id1], parents[id2]);
             if (Random::getInt(0, 100) < 30) {
-                pop[i] = mutation(pop[i]);
+                child = mutation(child);
             }
+            pop.push_back(child);
         }
+
+        // Calculate fitness of new generation
         notes.clear();
         for (T& p : pop) {
             notes.push_back(evaluator(p));
         }
 
         auto it = max_element(std::begin(notes), std::end(notes));
-        std::cout << pop[std::distance(notes.begin(), it)] << std::endl;
+        std::cout << "best individual: " << pop[std::distance(notes.begin(), it)] << " (with a rating of " << *it << ")" << std::endl;
         i++;
     }
 

@@ -25,13 +25,13 @@ public:
 int MyGenerator::SIZE = 0;
 
 int main() {
-    std::string solution = "Thibaut est un sacrer fdp, j'ai jurer wola.";
+    std::string solution = "bjr les amis";
     MyEvaluator e(solution);
     MyGenerator g(solution.length());
-    GenericGenetics::Selector::Elitism<std::string> s(100);
+    GenericGenetics::Selector::Rating<std::string> s(10);
     MyCrossover c;
     MyMutation m;
-    GenericGenetics::Criterion::Mark f(43.0);
+    GenericGenetics::Criterion::Mark f(static_cast<float>(solution.length()));
 
     std::string r = GenericGenetics::generate<std::string>(g, e, s, c, m, f);
 
