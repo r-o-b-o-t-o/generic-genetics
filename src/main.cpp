@@ -4,7 +4,7 @@
 #include "MyEvaluator.hpp"
 #include "MyGenerator.hpp"
 #include "generate.hpp"
-#include "selectors/selectors.hpp"
+#include "selectors.hpp"
 
 class MyMutation {
 public:
