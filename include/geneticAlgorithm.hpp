@@ -19,7 +19,6 @@ public:
     }
 
     T run(int popSize) {
-
         return GenericGenetics::generate<std::string>(*g, *e, *s, *c, *m, *f,
                                                       popSize);
     }

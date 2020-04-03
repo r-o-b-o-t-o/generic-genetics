@@ -12,6 +12,8 @@ ADD_EXECUTABLE(
 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/map.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/lander.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/texture_loader.cpp
 )
 
 FIND_PACKAGE(SFML 2 REQUIRED graphics window system)
