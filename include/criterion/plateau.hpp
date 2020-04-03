@@ -8,7 +8,7 @@ namespace Criterion {
 class Plateau {
 public:
     Plateau(int maxIterations)
-        : maxIterations(maxIterations), count(0), prevRating(0.0) {}
+        : count(0), prevRating(0.0), maxIterations(maxIterations) {}
 
     bool operator()(std::vector<float>& ratings) {
         float max = 0.0;

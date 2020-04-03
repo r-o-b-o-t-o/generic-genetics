@@ -5,26 +5,26 @@
 Lander::Lander(const TextureLoader& textureLoader, const sf::Vector2f& pos,
                float fuel)
     : pos(pos),
-      fuel(fuel),
-      angle(-90.0f),
-      isThrusting(false),
       velocity(20.0f, 0.0f),
       accel(0.0f, 1.62f),
+      angle(-90.0f),
+      fuel(fuel),
+      isThrusting(false),
       start(std::chrono::steady_clock::now()) {
 
     this->regularSprite.setTexture(*textureLoader.get("lander"));
     this->regularSprite.scale(sf::Vector2f(0.5f, 0.5f));
-    sf::FloatRect bounds = this->regularSprite.getGlobalBounds();
+    sf::FloatRect bounds = this->regularSprite.getLocalBounds();
     this->regularSprite.setOrigin(bounds.width / 2.0f, 0.0f);
 
     this->thrust1Sprite.setTexture(*textureLoader.get("landerthrust1"));
     this->thrust1Sprite.scale(sf::Vector2f(0.5f, 0.5f));
-    bounds = this->thrust1Sprite.getGlobalBounds();
+    bounds = this->thrust1Sprite.getLocalBounds();
     this->thrust1Sprite.setOrigin(bounds.width / 2.0f, 0.0f);
 
     this->thrust2Sprite.setTexture(*textureLoader.get("landerthrust2"));
     this->thrust2Sprite.scale(sf::Vector2f(0.5f, 0.5f));
-    bounds = this->thrust2Sprite.getGlobalBounds();
+    bounds = this->thrust2Sprite.getLocalBounds();
     this->thrust2Sprite.setOrigin(bounds.width / 2.0f, 0.0f);
 
     this->updateSprite();

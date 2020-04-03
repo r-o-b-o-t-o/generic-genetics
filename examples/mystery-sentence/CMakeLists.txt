@@ -16,3 +16,10 @@ ADD_EXECUTABLE(
     ${PROJECT_SOURCE_DIR}/src/generator.cpp
     ${PROJECT_SOURCE_DIR}/src/mutation.cpp
 )
+
+IF (CMAKE_COMPILER_IS_GNUCC)
+    TARGET_COMPILE_OPTIONS(example_mystery_sentences PRIVATE "-Wall")
+ENDIF ()
+IF (MSVC)
+    TARGET_COMPILE_OPTIONS(example_mystery_sentences PRIVATE "/W4")
+ENDIF ()

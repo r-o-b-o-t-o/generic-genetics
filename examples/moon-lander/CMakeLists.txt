@@ -24,3 +24,10 @@ ENDIF ()
 
 ADD_CUSTOM_COMMAND(TARGET example_moon_lander POST_BUILD COMMAND "${CMAKE_COMMAND}" -E rm -rf ${CMAKE_BINARY_DIR}/resources DEPENDS example_moon_lander)
 ADD_CUSTOM_COMMAND(TARGET example_moon_lander POST_BUILD COMMAND "${CMAKE_COMMAND}" -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/resources ${CMAKE_BINARY_DIR}/resources DEPENDS example_moon_lander)
+
+IF (CMAKE_COMPILER_IS_GNUCC)
+    TARGET_COMPILE_OPTIONS(example_moon_lander PRIVATE "-Wall")
+ENDIF ()
+IF (MSVC)
+    TARGET_COMPILE_OPTIONS(example_moon_lander PRIVATE "/W4")
+ENDIF ()

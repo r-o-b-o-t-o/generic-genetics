@@ -6,7 +6,7 @@ Evaluator::Evaluator(const std::string& s, Generator* generator)
 
 float Evaluator::operator()(const std::string& s) const {
     float val = 0.0;
-    for (int i = 0; i < s.length(); ++i) {
+    for (size_t i = 0; i < s.length(); ++i) {
         if (s[i] == this->solution[i]) {
             val += 1.0;
         } else {

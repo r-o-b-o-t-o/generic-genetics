@@ -7,7 +7,7 @@ namespace Criterion {
 
 class Iterations {
 public:
-    Iterations(int maxIterations) : maxIterations(maxIterations), count(0) {}
+    Iterations(int maxIterations) : count(0), maxIterations(maxIterations) {}
 
     bool operator()(std::vector<float>& ratings) {
         this->count++;

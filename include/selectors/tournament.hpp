@@ -9,11 +9,11 @@ namespace Selector {
 template <typename T>
 class Tournament {
 public:
-    Tournament(int nbParticipants, int tournamentRounds)
+    Tournament(size_t nbParticipants, int tournamentRounds)
         : nbParticipants(nbParticipants), tournamentRounds(tournamentRounds) {}
 
-    int getNbParticipants() { return this->nbParticipants; }
-    void setNbParticipants(int nbParticipants) {
+    size_t getNbParticipants() { return this->nbParticipants; }
+    void setNbParticipants(size_t nbParticipants) {
         this->nbParticipants = nbParticipants;
     }
 
@@ -36,7 +36,7 @@ public:
             assert(n == ratings.size());
             assert(n >= this->nbParticipants);
 
-            for (int i = 0; i < this->nbParticipants; ++i) {
+            for (size_t i = 0; i < this->nbParticipants; ++i) {
                 int randParticipant;
                 do {
                     randParticipant = Random::getInt(0, n - 1);
@@ -47,7 +47,7 @@ public:
 
             int best = -1;
             float bestRating = 0.0f;
-            for (int i = 0; i < this->nbParticipants; ++i) {
+            for (size_t i = 0; i < this->nbParticipants; ++i) {
                 if (best == -1 || ratings[participants[i]] > bestRating) {
                     best = participants[i];
                     bestRating = ratings[participants[i]];
@@ -63,7 +63,7 @@ public:
     }
 
 private:
-    int nbParticipants;
+    size_t nbParticipants;
     int tournamentRounds;
 };
 

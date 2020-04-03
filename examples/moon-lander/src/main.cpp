@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 
+#include "collisions.hpp"
 #include "lander.hpp"
 #include "map.hpp"
 #include "texture_loader.hpp"
@@ -25,6 +26,14 @@ int main() {
 
     Map map;
     std::vector<std::array<sf::Vertex, 2>> mapLines = map.buildLines();
+    size_t mapLinesN = mapLines.size();
+    std::vector<std::array<sf::Vertex, 2>> movedMapLines;
+    movedMapLines.reserve(2 * mapLinesN);
+    for (int i = 0; i < 2; ++i) {
+        for (const std::array<sf::Vertex, 2>& line : mapLines) {
+            movedMapLines.push_back(line);
+        }
+    }
     float mapMin = map.getMinX();
     float mapMax = map.getMaxX();
     float mapSize = mapMax - mapMin;
@@ -50,14 +59,16 @@ int main() {
 
         sf::Time _dt = clock.restart();
         float dt = _dt.asSeconds();
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            lander.turnLeft();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            lander.turnRight();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            lander.addThrust();
+        if (humanControl) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+                lander.turnLeft();
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+                lander.turnRight();
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                lander.addThrust();
+            }
         }
         lander.update(dt);
 
@@ -68,22 +79,30 @@ int main() {
 
         mapScroll = std::ceil(lander.getPos().x / mapSize);
         mapScroll -= 0.5f;
-        for (const auto& l : mapLines) {
-            line[0] = l[0];
-            line[1] = l[1];
-            line[0].position.x += -mapSize + mapSize * mapScroll;
-            line[1].position.x += -mapSize + mapSize * mapScroll;
-            window.draw(line, 2, sf::Lines);
-        }
-        for (const auto& l : mapLines) {
-            line[0] = l[0];
-            line[1] = l[1];
-            line[0].position.x += mapSize * mapScroll;
-            line[1].position.x += mapSize * mapScroll;
-            window.draw(line, 2, sf::Lines);
+        for (int i = 0; i < 2; ++i) {
+            for (size_t j = 0; j < mapLinesN; ++j) {
+                int idx = i * mapLinesN + j;
+                movedMapLines[idx][0] = mapLines[j][0];
+                movedMapLines[idx][1] = mapLines[j][1];
+                movedMapLines[idx][0].position.x +=
+                    (-mapSize * i) + mapSize * mapScroll;
+                movedMapLines[idx][1].position.x +=
+                    (-mapSize * i) + mapSize * mapScroll;
+                line[0] = movedMapLines[idx][0];
+                line[1] = movedMapLines[idx][1];
+                window.draw(line, 2, sf::Lines);
+            }
         }
 
         window.draw(lander.getSprite());
+        /*sf::CircleShape bounds(7.5f);
+        bounds.setOrigin(bounds.getRadius(), 0.0f);
+        bounds.setRotation(lander.getAngle());
+        bounds.setOutlineColor(sf::Color::Red);
+        bounds.setOutlineThickness(1.0f);
+        bounds.setFillColor(sf::Color::Transparent);
+        bounds.setPosition(lander.getPos());
+        window.draw(bounds);*/
 
         window.display();
     }
