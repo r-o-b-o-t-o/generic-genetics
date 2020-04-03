@@ -2,12 +2,15 @@
 
 #include "lander.hpp"
 
-Lander::Lander(const TextureLoader& textureLoader, const sf::Vector2f& pos)
+Lander::Lander(const TextureLoader& textureLoader, const sf::Vector2f& pos,
+               float fuel)
     : pos(pos),
+      fuel(fuel),
       angle(-90.0f),
       isThrusting(false),
       velocity(20.0f, 0.0f),
-      accel(0.0f, 1.62f) {
+      accel(0.0f, 1.62f),
+      start(std::chrono::steady_clock::now()) {
 
     this->regularSprite.setTexture(*textureLoader.get("lander"));
     this->regularSprite.scale(sf::Vector2f(0.5f, 0.5f));
@@ -55,9 +58,20 @@ const sf::Sprite& Lander::getSprite() const { return *this->sprite; }
 
 const sf::Vector2f& Lander::getPos() const { return this->pos; }
 
-float Lander::getThrust() const { return this->thrust; }
+float Lander::getThrust() const { return this->isThrusting ? 1.0f : 0.0f; }
 
 float Lander::getAngle() const { return this->angle; }
+
+float Lander::getFuel() const { return this->fuel; }
+
+float Lander::getTime() const {
+    auto now = std::chrono::steady_clock::now();
+    return static_cast<float>(
+               std::chrono::duration_cast<std::chrono::milliseconds>(
+                   now - this->start)
+                   .count()) /
+           1000.0f;
+}
 
 sf::Vector2f Lander::getDirection() const {
     static const float deg2rad = M_PI * 2.0f / 360.0f;
@@ -85,11 +99,16 @@ void Lander::updateSprite() {
 }
 
 void Lander::addThrust() {
+    if (this->fuel <= 0.0f) {
+        return;
+    }
+
     this->thrust += 0.1f;
     this->thrust = std::min(this->thrust, 1.0f);
     static const float thrustPower = -0.1f;
     this->velocity -= this->getDirection() * thrustPower;
     this->isThrusting = true;
+    this->fuel -= 1.0f;
     this->updateSprite();
 }
 

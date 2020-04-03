@@ -29,7 +29,7 @@ int main() {
     float mapMax = map.getMaxX();
     float mapSize = mapMax - mapMin;
 
-    Lander lander(textureLoader, sf::Vector2f(-200.0f, 200.0f));
+    Lander lander(textureLoader, sf::Vector2f(-200.0f, 200.0f), 1'000.0f);
     sf::Vertex line[2];
     float mapScroll;
 
