@@ -19,7 +19,7 @@ float Generator::genRandomAngle(float angle) const {
 std::vector<std::pair<float, float>>
 Generator::genRandomCommands(int size) const {
     std::vector<std::pair<float, float>> actions;
-    float angle = 0.0;
+    float angle = -90.0;
     for (int i = 0; i < size; ++i) {
         angle = this->genRandomAngle(angle);
         actions.push_back(std::make_pair(angle, this->genRandomThrust()));

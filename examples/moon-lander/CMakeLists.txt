@@ -15,6 +15,11 @@ ADD_EXECUTABLE(
     ${CMAKE_CURRENT_SOURCE_DIR}/src/map.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/lander.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/texture_loader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/bot_lander.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/mutation.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/crossover.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/generator.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/evaluator.cpp
 )
 
 FIND_PACKAGE(SFML 2 REQUIRED graphics window system)

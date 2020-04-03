@@ -24,12 +24,15 @@ public:
     void turnLeft();
     void turnRight();
 
+protected:
+    float angle;
+    float thrust;
+
+
 private:
     sf::Vector2f pos;
     sf::Vector2f velocity;
     sf::Vector2f accel;
-    float angle;
-    float thrust;
     float fuel;
     bool isThrusting;
 

@@ -4,11 +4,10 @@
 
 #include "generator.hpp"
 
-class Mutation {
+class Evaluator {
 public:
-    Mutation(Generator* generator);
-
-    void operator()(BotLander& solution) const;
+    Evaluator(Generator* generator);
+    float operator()(const BotLander& s) const;
 
 private:
     Generator* generator;

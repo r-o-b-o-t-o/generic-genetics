@@ -3,9 +3,11 @@
 #include <string>
 #include <vector>
 
+#include "bot_lander.hpp"
+
 class Crossover {
 public:
-    std::vector<std::pair<float, float>>
-    operator()(const std::vector<std::pair<float, float>>& parent1,
-               const std::vector<std::pair<float, float>>& parent2) const;
+    BotLander
+    operator()(const BotLander& parent1,
+               const BotLander& parent2) const;
 };
