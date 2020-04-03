@@ -12,7 +12,7 @@ float Generator::genRandomThrust() const {
 
 float Generator::genRandomAngle(float angle) const {
     angle += GenericGenetics::Random::getFloat(-2, 2);
-    angle = std::min(angle, 90.0f); 
+    angle = std::min(angle, 90.0f);
     return angle = std::max(angle, -90.0f);
 }
 

@@ -3,7 +3,6 @@
 #include <iostream>
 #include <vector>
 
-#include "collisions.hpp"
 #include "lander.hpp"
 #include "map.hpp"
 #include "texture_loader.hpp"

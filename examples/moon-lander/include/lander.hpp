@@ -1,13 +1,14 @@
 #pragma once
 
-#include <chrono>
 #include <SFML/System.hpp>
+#include <chrono>
 
 #include "texture_loader.hpp"
 
 class Lander {
 public:
-    Lander(const TextureLoader& textureLoader, const sf::Vector2f& pos, float fuel);
+    Lander(const TextureLoader& textureLoader, const sf::Vector2f& pos,
+           float fuel);
 
     void update(float dt);
     const sf::Sprite& getSprite() const;
@@ -38,6 +39,6 @@ private:
 
     std::chrono::steady_clock::time_point start;
 
-    void setPos(const sf::Vector2f &pos);
+    void setPos(const sf::Vector2f& pos);
     void updateSprite();
 };
