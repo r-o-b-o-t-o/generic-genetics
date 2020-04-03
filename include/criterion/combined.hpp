@@ -11,9 +11,15 @@ namespace Criterion {
 
 class Combined {
 public:
-    Combined(int maxIterations, float maxRating, int plateauMaxIterations);
+    Combined(int maxIterations, float maxRating, int plateauMaxIterations)
+        : iterations(maxIterations),
+          mark(maxRating),
+          plateau(plateauMaxIterations) {}
 
-    bool operator()(std::vector<float>& ratings);
+    bool operator()(std::vector<float>& ratings) {
+        return this->iterations(ratings) || this->mark(ratings) ||
+               this->plateau(ratings);
+    }
 
 private:
     Iterations iterations;

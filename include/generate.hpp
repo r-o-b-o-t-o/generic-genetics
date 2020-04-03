@@ -11,12 +11,12 @@ namespace GenericGenetics {
 template <typename T, typename G, typename E, typename S, typename C,
           typename M, typename F>
 T generate(const G& generator, const E& evaluator, const S& selector,
-           const C& crossover, const M& mutation, F& stopCrit) {
+           const C& crossover, const M& mutation, F& stopCrit, int popSize) {
     std::vector<T> pop;
     std::vector<T> parents;
     std::vector<float> ratings;
 
-    for (int i = 0; i < NB; ++i) {
+    for (int i = 0; i < popSize; ++i) {
         pop.push_back(generator());
     }
 
@@ -29,9 +29,10 @@ T generate(const G& generator, const E& evaluator, const S& selector,
         parents = selector(pop, ratings);
         size_t parentsSize = parents.size();
 
-        // New generation from the fittest individuals of the previous population
+        // New generation from the fittest individuals of the previous
+        // population
         pop.clear();
-        for (int j = 0; j < NB; ++j) {
+        for (int j = 0; j < popSize; ++j) {
             int id1 = Random::getInt(0, parentsSize - 1);
             int id2 = Random::getInt(0, parentsSize - 1);
             if (id1 == id2) {
@@ -57,7 +58,6 @@ T generate(const G& generator, const E& evaluator, const S& selector,
     auto it = max_element(std::begin(ratings), std::end(ratings));
 
     std::cout << "Finished in " << i << " iterations" << std::endl;
-
     return pop[std::distance(ratings.begin(), it)];
 }
 

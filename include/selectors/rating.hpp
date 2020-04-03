@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include "../random.hpp"
 
 namespace GenericGenetics {
 namespace Selector {

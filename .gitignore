@@ -66,7 +66,3 @@ _deps
 .history
 
 # End of https://www.gitignore.io/api/c++,cmake,visualstudiocode
-
-# Build directory
-/[Bb]uild
-/[Bb]uilds

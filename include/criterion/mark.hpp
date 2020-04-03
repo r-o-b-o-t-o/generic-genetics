@@ -7,9 +7,16 @@ namespace Criterion {
 
 class Mark {
 public:
-    Mark(float maxRating);
+    Mark(float maxRating) : maxRating(maxRating) {}
 
-    bool operator()(std::vector<float>& ratings);
+    bool operator()(std::vector<float>& ratings) {
+        for (float& rating : ratings) {
+            if (rating >= this->maxRating) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 private:
     float maxRating;
