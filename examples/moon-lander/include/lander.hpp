@@ -13,6 +13,7 @@ public:
     const sf::Vector2f& getPos() const;
     float getThrust() const;
     float getAngle() const;
+    sf::Vector2f getDirection() const;
 
     void addThrust();
     void turnLeft();

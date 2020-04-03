@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "lander.hpp"
 
 Lander::Lander(const TextureLoader& textureLoader, const sf::Vector2f& pos)
@@ -57,6 +59,13 @@ float Lander::getThrust() const { return this->thrust; }
 
 float Lander::getAngle() const { return this->angle; }
 
+sf::Vector2f Lander::getDirection() const {
+    static const float deg2rad = M_PI * 2.0f / 360.0f;
+    float x = std::cos((this->angle - 90.0f) * deg2rad);
+    float y = std::sin((this->angle - 90.0f) * deg2rad);
+    return sf::Vector2f(x, y);
+}
+
 void Lander::setPos(const sf::Vector2f& pos) {
     this->pos = pos;
     this->updateSprite();
@@ -79,7 +88,7 @@ void Lander::addThrust() {
     this->thrust += 0.1f;
     this->thrust = std::min(this->thrust, 1.0f);
     static const float thrustPower = -0.1f;
-    this->velocity.y += thrustPower;
+    this->velocity -= this->getDirection() * thrustPower;
     this->isThrusting = true;
     this->updateSprite();
 }
