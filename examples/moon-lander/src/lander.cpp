@@ -58,6 +58,8 @@ const sf::Sprite& Lander::getSprite() const { return *this->sprite; }
 
 const sf::Vector2f& Lander::getPos() const { return this->pos; }
 
+const sf::Vector2f& Lander::getVelocity() const { return this->velocity; }
+
 float Lander::getThrust() const { return this->isThrusting ? 1.0f : 0.0f; }
 
 float Lander::getAngle() const { return this->angle; }
@@ -114,12 +116,12 @@ void Lander::addThrust() {
 
 void Lander::turnLeft() {
     this->angle -= 2.0f;
-    this->angle = std::max(this->angle, -90.0f);
+    //this->angle = std::max(this->angle, -90.0f);
     this->updateSprite();
 }
 
 void Lander::turnRight() {
     this->angle += 2.0f;
-    this->angle = std::min(this->angle, 90.0f);
+    //this->angle = std::min(this->angle, 90.0f);
     this->updateSprite();
 }

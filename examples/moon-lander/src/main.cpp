@@ -7,6 +7,9 @@
 #include "map.hpp"
 #include "texture_loader.hpp"
 
+#define CUTE_C2_IMPLEMENTATION
+#include "cute_c2.h"
+
 bool cmp(const sf::Vector2f& lhs, const sf::Vector2f& rhs) {
     return lhs.x < rhs.x;
 }
@@ -76,6 +79,18 @@ int main() {
         view.setCenter(lander.getPos() + sf::Vector2f(0.0f, 70.0f));
         window.setView(view);
 
+        sf::CircleShape bounds(7.5f);
+        bounds.setOrigin(bounds.getRadius(), 0.0f);
+        bounds.setRotation(lander.getAngle());
+        bounds.setOutlineColor(sf::Color::Red);
+        bounds.setOutlineThickness(1.0f);
+        bounds.setFillColor(sf::Color::Transparent);
+        bounds.setPosition(lander.getPos());
+        c2Circle c2Bounds;
+        c2Bounds.p.x = bounds.getPosition().x + bounds.getOrigin().x;
+        c2Bounds.p.y = bounds.getPosition().y + bounds.getOrigin().y;
+        c2Bounds.r = bounds.getRadius();
+
         mapScroll = std::ceil(lander.getPos().x / mapSize);
         mapScroll -= 0.5f;
         for (int i = 0; i < 2; ++i) {
@@ -90,18 +105,43 @@ int main() {
                 line[0] = movedMapLines[idx][0];
                 line[1] = movedMapLines[idx][1];
                 window.draw(line, 2, sf::Lines);
+
+                c2Poly poly;
+                poly.count = 4;
+                poly.verts[0].x = line[0].position.x;
+                poly.verts[0].y = line[0].position.y;
+                poly.verts[1].x = line[1].position.x;
+                poly.verts[1].y = line[1].position.y;
+                poly.verts[2].x = line[0].position.x;
+                ;
+                poly.verts[2].y = 2000.0f;
+                poly.verts[3].x = line[1].position.x;
+                poly.verts[3].y = 2000.0f;
+                int collision = c2CircletoPoly(c2Bounds, &poly, nullptr);
+                if (collision == 1) {
+                    // Collided
+                    if (line[1].position.y - line[0].position.y > 0.01f) {
+                        // If ground is not horizontal
+                        std::cout << "rip\n";
+                    }
+                    if (!(lander.getAngle() >= -10 &&
+                          lander.getAngle() <= 10)) {
+                        // If lander is not vertical
+                        std::cout << "rip\n";
+                    }
+                    float speed =
+                        std::sqrt(std::pow(lander.getVelocity().x, 2) +
+                                  std::pow(lander.getVelocity().y, 2));
+                    if (speed >= 8.0f) {
+                        // If lander lands too fast
+                        std::cout << "rip\n";
+                    }
+                }
             }
         }
 
         window.draw(lander.getSprite());
-        /*sf::CircleShape bounds(7.5f);
-        bounds.setOrigin(bounds.getRadius(), 0.0f);
-        bounds.setRotation(lander.getAngle());
-        bounds.setOutlineColor(sf::Color::Red);
-        bounds.setOutlineThickness(1.0f);
-        bounds.setFillColor(sf::Color::Transparent);
-        bounds.setPosition(lander.getPos());
-        window.draw(bounds);*/
+        window.draw(bounds);
 
         window.display();
     }

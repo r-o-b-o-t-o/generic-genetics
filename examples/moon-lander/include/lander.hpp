@@ -13,6 +13,7 @@ public:
     void update(float dt);
     const sf::Sprite& getSprite() const;
     const sf::Vector2f& getPos() const;
+    const sf::Vector2f& getVelocity() const;
     float getThrust() const;
     float getAngle() const;
     float getFuel() const;
