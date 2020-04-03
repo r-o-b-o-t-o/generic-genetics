@@ -43,12 +43,12 @@ public:
         this->s = s;
         this->c = c;
         this->m = m;
-        this->f = new GenericGenetics::Criterion::Iterations(nbIter);
+        this->f = GenericGenetics::Criterion::Iterations(nbIter);
     }
 
     T run(int popSize) {
 
-        return GenericGenetics::generate<std::string>(*g, *e, *s, *c, *m, *f,
+        return GenericGenetics::generate<std::string>(*g, *e, *s, *c, *m, f,
                                                       popSize);
     }
 
@@ -58,7 +58,7 @@ private:
     GenericGenetics::Selector::Tournament<T>* s;
     C c;
     M m;
-    GenericGenetics::Criterion::Iterations* f;
+    GenericGenetics::Criterion::Iterations f;
 };
 
 } // namespace GenericGenetics
