@@ -23,7 +23,7 @@ int main() {
 
 
     // ---------------------using GeneticAlgorithm class---------------------
-    std::string solution = "well hello there";
+    /*std::string solution = "well hello there";
     Generator g(solution.length(), 0);
     Evaluator e(solution, &g);
     GenericGenetics::Selector::Rank<std::string> s(100);
@@ -36,7 +36,23 @@ int main() {
         GenericGenetics::Selector::Rank<std::string>*, Crossover*, Mutation*,
         GenericGenetics::Criterion::Mark*>
         algo(&g, &e, &s, &c, &m, &f);
+    std::string result = algo.run(1'000);*/
+
+    // ---------------------using GeneticAlgorithm class with specialization---------------------
+    std::string solution = "well hello there";
+    Generator g(solution.length(), 0);
+    Evaluator e(solution, &g);
+    GenericGenetics::Selector::Tournament<std::string> s(100, 10);
+    Crossover c;
+    Mutation m(&g);
+
+    GenericGenetics::GeneticAlgorithm<
+        std::string, Generator*, Evaluator*,
+        GenericGenetics::Selector::Tournament<std::string>*, Crossover*, Mutation*,
+        GenericGenetics::Criterion::Iterations*>
+        algo(1'000, &g, &e, &s, &c, &m);
     std::string result = algo.run(1'000);
+
     std::cout << result << std::endl;
 
     return 0;
