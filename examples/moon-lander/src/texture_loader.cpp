@@ -8,7 +8,6 @@ TextureLoader::TextureLoader() {
     texturePaths.push_back("lander.png");
     texturePaths.push_back("landerthrust1.png");
     texturePaths.push_back("landerthrust2.png");
-    texturePaths.push_back("test.png");
 
     for (const std::string& path : texturePaths) {
         std::string fileName = path.substr(0, path.find_last_of('.'));
